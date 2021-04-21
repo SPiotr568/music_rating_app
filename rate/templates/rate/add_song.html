@@ -1,0 +1,34 @@
+{%  extends 'rate/main.html' %}
+
+{% block content %}
+<br>
+<div class="row">
+	<div class="col-md-4">
+		<div class="card card-body">
+			<a class="btn btn-warning" href="{% url 'search_to_add' %}"> &#8592; Back to searching</a>
+			<hr>
+			    <h3 style="text-align: center">Adding song</h3>
+			<hr>
+		</div>
+        <div class="card card-body">
+            <a href="{{ song.url }}" target="_blank"><img src="{{ thumbnail }}" width="100%" height="100%"></a>
+            <h3 style="text-align: center">{{ title }}</h3>
+        </div>
+	</div>
+	<div class="col-md-8">
+		<div class="card card-body">
+			<form method="POST" action="">
+				{% csrf_token %}
+				{{form.as_p}}
+			<input class="btn btn-primary" type="submit" name="Update profile" value="Add song">
+			</form>
+		</div>
+        <div class="card card-body">
+            {% for message in messages %}
+                <p id="messages">{{ message }}</p>
+            {% endfor %}
+        </div>
+	</div>
+</div>
+
+{% endblock %}

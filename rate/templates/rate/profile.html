@@ -1,0 +1,25 @@
+{%  extends 'rate/main.html' %}
+
+{% block content %}
+<br>
+<div class="row">
+	<div class="col-md-4">
+		<div class="card card-body">
+			<a class="btn btn-warning" href="{% url 'home' %}"> &#8592; Back to ranking</a>
+			<hr>
+			    <h3 style="text-align: center">Profile Settings</h3>
+			<hr>
+		</div>
+	</div>
+	<div class="col-md-8">
+		<div class="card card-body">
+			<form method="POST" action="">
+				{% csrf_token %}
+				{{form.as_p}}
+			<input class="btn btn-primary" type="submit" name="Update profile" value="Save">
+			</form>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

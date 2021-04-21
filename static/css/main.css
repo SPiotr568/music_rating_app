@@ -1,0 +1,45 @@
+body{
+    background-color: ghostwhite;
+}
+
+.nav-link,
+.hello-msg{
+    font-size: 28px;
+    color: silver;
+    margin-right: 10px;
+}
+
+#footer{
+    text-align: center;
+}
+
+.top-20{
+    font-size: 34px;
+    text-align: center;
+}
+
+.contact-text,
+.info-text,
+.rate-song{
+    font-size: 24px;
+    color: #2f2f2f;
+    text-align: center;
+}
+
+#id_name,
+#id_email,
+#id_author{
+    width: 80%;
+}
+
+#id_url {
+    width: 500px;
+}
+
+#id_subject {
+    width: 60%;
+}
+
+#id_message {
+    width: 100%;
+}

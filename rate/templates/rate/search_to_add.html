@@ -1,0 +1,46 @@
+{%  extends 'rate/main.html' %}
+{% load static %}
+{% block content %}
+<br>
+<div class="row">
+	<div class="col-md-12">
+        <a class="btn btn-warning" href="{% url 'home' %}"> &#8592; Back to ranking</a>
+        <hr>
+        <div class="col-md-4">
+            <form method="POST">
+                <div class="input-group mb-3">
+                    {% csrf_token %}
+                    <input type="text" name="search" class="form-control">
+                    <input class="btn btn-warning" type="submit" name="Submit" value="Search">
+                </div>
+            </form>
+        </div>
+		<hr>
+		<div class="card card-body">
+            <hr>
+            <h5>Results</h5>
+			<table class="table table-sm">
+				<tr>
+                    <th></th>
+					<th>Title</th>
+					<th>Views on Youtube</th>
+				</tr>
+
+                {% for song in songs %}
+                    <tr>
+                        {% if song.thumbnail is not None %}
+                            <th><a href="{{ song.url }}" target="_blank"><img src="{{ song.thumbnail }}" width="140" height="100"></a></th>
+                        {% else %}
+                            <th><img src="{% static 'images/logoMM.png' %}"  width="140" height="100"></th>
+                        {% endif %}
+                        <th>{{ song.title }}</th>
+                        <th>{{ song.views }}</th>
+                        <th><a class="btn btn-warning" href="{% url 'add_song' song.id %}">Add song</a></th>
+                    </tr>
+                {% endfor %}
+			</table>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

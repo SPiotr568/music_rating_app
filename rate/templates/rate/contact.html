@@ -1,0 +1,65 @@
+{%  extends 'rate/main.html' %}
+
+{% block content %}
+<br>
+<div class="row">
+	<div class="col-md-8">
+		<hr>
+		<div class="card card-body">
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-10">
+                        <div class="md-form mb-2">
+                            <label for="email" class="">Your email</label>
+                            <br>
+                            {{ form.email }}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-10">
+                        <div class="md-form mb-2">
+                            <label for="subject" class="">Subject</label>
+                            <br>
+                            {{ form.subject }}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="md-form mb-2">
+                            <label for="message">Your message</label>
+                            <br>
+                            {{ form.message }}
+                        </div>
+                    </div>
+                </div>
+                <input type="submit" class="btn btn-outline-primary" value="Send!"/>
+                {% for mess in messages %}
+                    <p id="messages">{{ mess }}</p>
+                {% endfor %}
+            </form>
+		</div>
+	</div>
+    <div class="col-md-4">
+        <hr>
+        <div class="card card-body">
+            <a>Phone: +48 123 456 789</a>
+            <a>Email: piotrsularz99@gmail.com</a>
+        </div>
+        <hr>
+        <div class="card card-body">
+            <div class="contact-text">
+                Do you have any questions?
+            </div>
+        </div>
+        <div class="card card-body">
+            <div class="contact-text">
+                ASK!
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

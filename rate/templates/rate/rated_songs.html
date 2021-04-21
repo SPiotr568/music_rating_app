@@ -1,0 +1,40 @@
+{%  extends 'rate/main.html' %}
+{% load static %}
+{% block content %}
+<br>
+<div class="row">
+	<div class="col-md-12">
+        <h5 class="top-20">My ratings</h5>
+		<hr>
+		<div class="card card-body">
+			<table class="table table-sm">
+				<tr>
+                    <th></th>
+					<th>Name</th>
+					<th>Author</th>
+					<th>Views on Youtube</th>
+					<th>Rating</th>
+                    <th>My rating</th>
+				</tr>
+
+                {% for song in songs %}
+                    <tr>
+                        {% if song.thumbnail is not None %}
+                            <th><a href="{{ song.url }}" target="_blank"><img src="{{ song.thumbnail }}" width="140" height="100"></a></th>
+                        {% else %}
+                            <th><img src="{% static 'images/logoMM.png' %}"  width="140" height="100"></th>
+                        {% endif %}
+                        <th>{{ song.name }}</th>
+                        <th>{{ song.author }}</th>
+                        <th>{{ song.views }}</th>
+                        <th>{{ song.overall_rating }} ({{ song.rating_count }})</th>
+                        <th>{{ song.my_rating }}</th>
+                        <th><a class="btn btn-warning" href="{% url 'song' song.id %}">Change</a></th>
+                    </tr>
+                {% endfor %}
+			</table>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

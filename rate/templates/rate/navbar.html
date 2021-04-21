@@ -1,0 +1,26 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <img src="{% static 'images/logoMM.png' %}">
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+        <li class="nav-item active">
+            <a class="nav-link" href="{% url 'home' %}">Home</a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="{% url 'rated_songs' %}">My ratings</a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="{% url 'search_to_add' %}">Add song</a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="{% url 'about' %}">About</a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+        </li>
+    </ul>
+  </div>
+    <span class="hello-msg">Hi, {{ request.user }}</span>
+    <span><a class="btn btn-outline-light" href="{% url 'profile' %}">Profile</a></span>
+    <span><a class="btn btn-outline-light" href="{% url 'logout' %}">Logout</a></span>
+</nav>
