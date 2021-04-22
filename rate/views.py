@@ -6,6 +6,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .decorators import unauthenticated_user, allowed_users
 from .models import Song, Reviewer, Rating
+from .filters import SongFilter
 from operator import attrgetter
 from django.db.models import Sum
 from rating import settings
@@ -296,9 +297,10 @@ def addSong(request, song_id):
                     appropriate_flag = False
                     break
             if appropriate_flag:
-                form.save()
-                messages.success(request, 'Song added! Now you can rate ' + form.cleaned_data.get('name'))
-
+                saved_song = form.save()
+                name = form.cleaned_data.get('name')
+                messages.success(request, mark_safe('Song added! Now you can rate ' + \
+                                "! Look <a href='/song/" + str(saved_song.id) + "'> "+name+"</a>"))
     song_url = f'https://www.youtube.com/watch?v={song_id}'
     video_url = 'https://www.googleapis.com/youtube/v3/videos'
     params = {
@@ -314,6 +316,20 @@ def addSong(request, song_id):
     context = {
         'form': form,
         'thumbnail': thumbnail,
-        'title': title
+        'title': title,
+        'song_url': song_url
     }
     return render(request, 'rate/add_song.html', context)
+
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['reviewer', 'admin'])
+def search(request):
+    songs = Song.objects.get_queryset()
+    myFilter = SongFilter(request.GET, queryset=songs)
+    found_songs = myFilter.qs
+    context = {
+        'found_songs': found_songs.order_by('name'),
+        'myFilter': myFilter
+    }
+    return render(request, 'rate/search.html', context)

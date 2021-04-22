@@ -1,0 +1,39 @@
+{%  extends 'rate/main.html' %}
+{% load static %}
+{% block content %}
+<br>
+<div class="row">
+	<div class="col-md-12">
+        <form method="get" class="form-inline">
+            <div class="card card-body">
+            Name: <a id="search-name">{{ myFilter.form.name }}</a>
+            Author: <a id="search-author">{{ myFilter.form.author }}</a>
+            Youtube URL: <a id="search-url">{{ myFilter.form.url }}</a>
+            </div>
+            <br>
+            <div class="card card-body">
+		        <button class="btn btn-warning" type="submit">Search</button>
+            </div>
+        </form>
+		<hr>
+		<div class="card card-body">
+			<table class="table table-sm">
+				<tr>
+					<th>Name</th>
+					<th>Author</th>
+					<th>Rating</th>
+				</tr>
+                {% for song in found_songs %}
+                    <tr>
+                        <th>{{ song.name }}</th>
+                        <th>{{ song.author }}</th>
+                        <th>{{ song.overall_rating }} ({{ song.rating_count }})</th>
+                        <th><a class="btn btn-warning" href="{% url 'song' song.id %}">RATE</a></th>
+                    </tr>
+                {% endfor %}
+			</table>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

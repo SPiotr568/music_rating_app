@@ -33,7 +33,7 @@ body{
 }
 
 #id_url {
-    width: 500px;
+    width: 80%;
 }
 
 #id_subject {
@@ -42,4 +42,16 @@ body{
 
 #id_message {
     width: 100%;
+}
+
+#search-name{
+    width: 40%;
+}
+
+#search-author{
+    width: 35%;
+}
+
+#search-url2{
+    width: 50%;
 }

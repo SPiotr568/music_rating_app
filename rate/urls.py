@@ -16,6 +16,7 @@ urlpatterns = [
     path('song/<str:pk>/', views.song, name='song'),
     path('search_to_add/', views.searchToAdd, name='search_to_add'),
     path('add_song/<str:song_id>/', views.addSong, name='add_song'),
+    path('search/', views.search, name='search'),
     # path('reeset_password/', auth_views.PasswordResetView.as_view(), name="reset_password"),
     # path('reeset_password_sent/', auth_views.PasswordResetDoneView.as_view(), name="password_reset_done"),
     # path('reeset_password/<uidb64>/<token>', auth_views.PasswordResetConfirmView.as_view(), name="password_reset_confirm"),
